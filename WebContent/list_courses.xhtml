@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<f:metadata>
+  <f:event type="preRenderView" 
+      listener="#{courseController.loadCourses()}"/>
+	</f:metadata>
+	
+<h:head>
+	<title>Colleges DB - Manage Courses</title>
+</h:head>
+<h:body>
+	<h1>Course Details</h1>
+	<br/>
+	<h:outputStylesheet library="css" name="tables.css" />
+	<h:form>
+	
+	<h:commandButton value="Add Courses" action="add_courses" />
+	
+	<h:dataTable value="#{courseController.courses}" var="courses"
+		styleClass="table" headerClass="table-header"
+		rowClasses="table-add-row,table-even-row">
+		<h:column>
+			<f:facet name="header">Course ID</f:facet>
+			<h:outputText value="#{courses.cID}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Course Name</f:facet>
+			<h:outputText value="#{courses.cName}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Duration</f:facet>
+			<h:outputText value="#{courses.duration}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Action</f:facet>
+			<h:commandLink value="Show Students" action="list_students.xhtml"/>
+			
+		</h:column>
+	
+	</h:dataTable>
+	</h:form>
+	
+	
+	<h:link value="Home" outcome="index"/>
+	
+</h:body>
+</html>
